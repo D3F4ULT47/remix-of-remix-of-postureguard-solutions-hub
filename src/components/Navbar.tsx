@@ -152,15 +152,18 @@ function NavItem({
   to,
   children,
   exact,
+  onActivate,
 }: {
   to: string;
   children: React.ReactNode;
   exact?: boolean;
+  onActivate?: () => void;
 }) {
   return (
     <Link
       to={to}
       activeOptions={{ exact: !!exact }}
+      onClick={onActivate}
       className="rounded-full px-4 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
       activeProps={{
         className:
