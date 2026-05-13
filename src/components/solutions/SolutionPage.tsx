@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import {
-  Breadcrumbs, CapabilityTag, FAQ, FeatureFooter, MetricCard, PageShell, ProductCanvas, RiskCard, SectionLabel,
+  Breadcrumbs, CapabilityTag, FAQ, FeatureFooter, MetricCard, PageShell, ProductCanvas, RiskCard, SectionHeader,
 } from "./PageShell";
 
 export interface SolutionPageProps {
