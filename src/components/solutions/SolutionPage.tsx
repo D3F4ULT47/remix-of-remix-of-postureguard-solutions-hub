@@ -21,19 +21,27 @@ export interface SolutionPageProps {
 export function SolutionPage(p: SolutionPageProps) {
   return (
     <PageShell>
-      {/* Compact, doc-like header — NO marketing hero */}
-      <section className="mx-auto max-w-7xl px-6 pb-14 pt-10">
+      {/* Hero — uses same chapter hierarchy as other sections */}
+      <section className="mx-auto max-w-7xl px-6 pb-20 pt-10 md:pb-28">
         <Breadcrumbs category={p.category} page={p.page} />
-        <div className="mt-6 grid items-start gap-10 md:grid-cols-12">
+        <header className="mt-10 mb-14 md:mb-20">
+          <div className="flex items-center gap-3 text-[11px] font-medium uppercase tracking-[0.24em] text-muted-foreground">
+            <span className="font-mono text-primary">00</span>
+            <span className="h-px w-10 bg-border" />
+            <span className="inline-flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary pulse-dot" />
+              {p.eyebrow}
+            </span>
+          </div>
+          <h1 className="mt-6 max-w-4xl text-balance text-4xl font-bold leading-[1.04] tracking-tight text-white md:text-[56px] lg:text-[64px]">
+            {p.title}
+          </h1>
+          <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-muted-foreground md:text-[16px]">{p.intro}</p>
+          <div className="mt-8 h-px w-full bg-gradient-to-r from-primary/40 via-border to-transparent" />
+        </header>
+        <div className="grid items-start gap-10 md:grid-cols-12">
           <div className="md:col-span-7">
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 font-mono text-[10.5px] uppercase tracking-[0.18em] text-primary">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary pulse-dot" /> {p.eyebrow}
-            </div>
-            <h1 className="mt-4 text-balance text-4xl font-semibold leading-[1.08] tracking-tight text-foreground md:text-[44px]">
-              {p.title}
-            </h1>
-            <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted-foreground">{p.intro}</p>
-            <div className="mt-5 flex flex-wrap gap-2">{p.capabilityTags.map((t) => <CapabilityTag key={t}>{t}</CapabilityTag>)}</div>
+            <div className="flex flex-wrap gap-2">{p.capabilityTags.map((t) => <CapabilityTag key={t}>{t}</CapabilityTag>)}</div>
           </div>
           <div className="md:col-span-5">
             <div className="grid grid-cols-2 gap-3">
