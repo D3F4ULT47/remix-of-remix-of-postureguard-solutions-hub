@@ -45,35 +45,25 @@ export function SolutionPage(p: SolutionPageProps) {
 
       {/* Section 1 — About */}
       <section className="border-t border-border">
-        <div className="mx-auto max-w-7xl px-6 py-16">
-          <SectionLabel index="01">About the Feature</SectionLabel>
-          <div className="grid gap-10 md:grid-cols-12">
-            <div className="md:col-span-5">
-              <h2 className="text-balance text-2xl font-semibold tracking-tight text-foreground">{p.about.lead}</h2>
-            </div>
-            <div className="grid gap-3 md:col-span-7 md:grid-cols-2">
-              {p.about.points.map((pt) => (
-                <div key={pt.h} className="rounded-xl border border-border bg-surface/40 p-5">
-                  <div className="text-[13.5px] font-semibold text-foreground">{pt.h}</div>
-                  <p className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">{pt.p}</p>
-                </div>
-              ))}
-            </div>
+        <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
+          <SectionHeader index="01" eyebrow="About the Feature" title="About the Feature" subtitle={p.about.lead} />
+          <div className="grid gap-4 md:grid-cols-2">
+            {p.about.points.map((pt) => (
+              <div key={pt.h} className="rounded-xl border border-border bg-surface/40 p-6">
+                <div className="text-[14px] font-semibold text-foreground">{pt.h}</div>
+                <p className="mt-2 text-[13.5px] leading-relaxed text-muted-foreground">{pt.p}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Section 2 — Why */}
       <section className="border-t border-border">
-        <div className="mx-auto max-w-7xl px-6 py-16">
-          <SectionLabel index="02">Why We Built This</SectionLabel>
-          <div className="grid gap-10 md:grid-cols-12">
-            <div className="md:col-span-4">
-              <h2 className="text-balance text-2xl font-semibold tracking-tight text-foreground">{p.why.lead}</h2>
-            </div>
-            <div className="grid gap-3 md:col-span-8 md:grid-cols-2">
-              {p.why.risks.map((r) => <RiskCard key={r.title} {...r} />)}
-            </div>
+        <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
+          <SectionHeader index="02" eyebrow="Why We Built This" title="Why We Built This" subtitle={p.why.lead} />
+          <div className="grid gap-4 md:grid-cols-2">
+            {p.why.risks.map((r) => <RiskCard key={r.title} {...r} />)}
           </div>
         </div>
       </section>
@@ -81,15 +71,14 @@ export function SolutionPage(p: SolutionPageProps) {
       {/* Section 3 — How (cinematic top-fade) */}
       <section className="relative border-t border-border">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-radial-primary" />
-        <div className="relative mx-auto max-w-7xl px-6 pt-16">
-          <SectionLabel index="03">How We Are Doing It</SectionLabel>
+        <div className="relative mx-auto max-w-7xl px-6 py-24 md:py-32">
+          <SectionHeader index="03" eyebrow="How We Are Doing It" title="How We Are Doing It" subtitle={p.how.lead} />
           <div className="grid gap-10 md:grid-cols-12">
             <div className="md:col-span-5">
-              <h2 className="text-balance text-2xl font-semibold tracking-tight text-foreground">{p.how.lead}</h2>
               {p.how.pillarsSlot ? (
-                <div className="mt-6">{p.how.pillarsSlot}</div>
+                p.how.pillarsSlot
               ) : (
-                <div className="mt-6 space-y-4">
+                <div className="space-y-4">
                   {p.how.pillars.map((pt, i) => (
                     <div key={pt.h} className="flex gap-4 rounded-xl border border-border bg-surface/40 p-4">
                       <div className="font-mono text-[11px] text-primary">0{i + 1}</div>
@@ -111,8 +100,8 @@ export function SolutionPage(p: SolutionPageProps) {
 
       {/* Section 4 — FAQ */}
       <section className="border-t border-border">
-        <div className="mx-auto max-w-4xl px-6 py-16">
-          <SectionLabel index="04">FAQ</SectionLabel>
+        <div className="mx-auto max-w-5xl px-6 py-24 md:py-32">
+          <SectionHeader index="04" eyebrow="FAQ" title="Frequently Asked Questions" subtitle="Operational details, integration depth and what to expect during evaluation." />
           <FAQ items={p.faq} />
         </div>
       </section>
