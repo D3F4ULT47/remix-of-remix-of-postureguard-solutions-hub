@@ -24,6 +24,9 @@ export function Breadcrumbs({ category, page }: { category: string; page: string
   );
 }
 
+/**
+ * Compact eyebrow label (kept for places that still need the small chapter tag).
+ */
 export function SectionLabel({ index, children }: { index: string; children: ReactNode }) {
   return (
     <div className="mb-6 flex items-center gap-3 text-[11px] font-medium uppercase tracking-[0.22em] text-muted-foreground">
@@ -31,6 +34,41 @@ export function SectionLabel({ index, children }: { index: string; children: Rea
       <span className="h-px flex-1 max-w-[40px] bg-border" />
       {children}
     </div>
+  );
+}
+
+/**
+ * Dominant chapter-style section header.
+ * Anchors each major section ("About the Feature", "Why We Built This", ...).
+ */
+export function SectionHeader({
+  index,
+  eyebrow,
+  title,
+  subtitle,
+}: {
+  index: string;
+  eyebrow: string;
+  title: string;
+  subtitle?: string;
+}) {
+  return (
+    <header className="mb-14 md:mb-20">
+      <div className="flex items-center gap-3 text-[11px] font-medium uppercase tracking-[0.24em] text-muted-foreground">
+        <span className="font-mono text-primary">{index}</span>
+        <span className="h-px w-10 bg-border" />
+        <span>{eyebrow}</span>
+      </div>
+      <h2 className="mt-6 max-w-4xl text-balance text-4xl font-bold leading-[1.04] tracking-tight text-white md:text-[56px] lg:text-[64px]">
+        {title}
+      </h2>
+      {subtitle && (
+        <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-muted-foreground md:text-[16px]">
+          {subtitle}
+        </p>
+      )}
+      <div className="mt-8 h-px w-full bg-gradient-to-r from-primary/40 via-border to-transparent" />
+    </header>
   );
 }
 
