@@ -70,15 +70,11 @@ export function Navbar() {
         <nav
           ref={wrapRef}
           className="glass-panel relative hidden items-center gap-1 rounded-full px-2 py-1.5 md:flex"
-          onMouseLeave={() => setOpen(false)}
         >
-          <NavItem to="/" exact>Home</NavItem>
-          <NavItem to="/compliance-score">Compliance Score</NavItem>
+          <NavItem to="/" exact onActivate={() => setOpen(false)}>Home</NavItem>
+          <NavItem to="/compliance-score" onActivate={() => setOpen(false)}>Compliance Score</NavItem>
 
-          <div
-            className="relative"
-            onMouseEnter={() => setOpen(true)}
-          >
+          <div className="relative">
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
