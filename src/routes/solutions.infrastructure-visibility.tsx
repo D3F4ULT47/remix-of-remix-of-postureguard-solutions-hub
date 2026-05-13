@@ -30,6 +30,7 @@ function Page() {
         { label: "Drift Events", value: "8", delta: "last 24h", intent: "muted" },
       ]}
       about={{
+        title: "Continuous visibility across infrastructure",
         lead: "If you can't see it, you can't defend it. The Canvas keeps your topology honest.",
         points: [
           { h: "Live multi-cloud topology", p: "AWS, Azure, GCP and on-prem assets reconciled into a single graph — refreshed every few minutes, not nightly." },
@@ -39,6 +40,7 @@ function Page() {
         ],
       }}
       why={{
+        title: "Where teams lose infrastructure visibility",
         lead: "Cloud sprawl makes static inventories obsolete the moment they ship.",
         risks: [
           { title: "Shadow accounts and forgotten regions", description: "Most enterprises run 2–3× more cloud accounts than security teams know about.", severity: "High" },
@@ -48,6 +50,7 @@ function Page() {
         ],
       }}
       how={{
+        title: "Real-time infrastructure intelligence",
         lead: "A real-time graph engine with security and identity intelligence layered directly into the topology.",
         pillars: [
           { h: "Real-time graph", p: "Cloud APIs streamed into a graph database; nodes and edges reconciled within minutes." },
@@ -57,14 +60,14 @@ function Page() {
         ],
         canvas: <InfraCanvas />,
       }}
-      faq={[
+      faq={{ title: "Infrastructure & cloud considerations", items: [
         { q: "Which clouds and providers are supported?", a: "AWS, Azure, GCP and Oracle Cloud as first-class providers. Kubernetes (EKS/AKS/GKE/self-hosted), VMware vSphere and bare-metal via collector." },
         { q: "How fresh is the topology?", a: "Most resource types refresh in under 5 minutes via event-driven ingestion (CloudTrail, Azure Activity Log, GCP Audit Logs). Full reconciliation runs hourly." },
         { q: "Do you require agents?", a: "No. The Canvas is fully agentless using read-only cloud roles. An optional lightweight collector exists for on-prem and air-gapped environments." },
         { q: "Can I query the graph directly?", a: "Yes — the underlying graph is exposed via a Cypher-style query API and a saved-query library for common attack-path patterns." },
         { q: "How does attack-path analysis work?", a: "We model exploitability between nodes (network reach, IAM trust, data flow) and run constrained graph traversals from exposed entry points to sensitive sinks." },
         { q: "Will this slow down my cloud accounts?", a: "Ingestion uses standard read APIs with adaptive rate limiting. Typical impact is below 0.1% of account API quota." },
-      ]}
+      ]}}
       next={{ to: "/solutions/threat-intelligence", title: "Threat Intelligence" }}
     />
   );

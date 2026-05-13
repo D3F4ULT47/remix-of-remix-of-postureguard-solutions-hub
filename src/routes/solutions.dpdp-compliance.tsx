@@ -30,6 +30,7 @@ function Page() {
         { label: "Frameworks", value: "12", delta: "live mapped", intent: "muted" },
       ]}
       about={{
+        title: "Compliance intelligence at scale",
         lead: "Stop treating compliance as a quarterly sprint. Operate it like infrastructure.",
         points: [
           { h: "Live regulatory mapping", p: "Every asset, control and policy mapped to clauses across DPDP, GDPR, ISO 27001, SOC 2, HIPAA and PCI-DSS." },
@@ -39,6 +40,7 @@ function Page() {
         ],
       }}
       why={{
+        title: "The cost of fragmented compliance",
         lead: "The cost of compliance keeps rising — but the visibility doesn't.",
         risks: [
           { title: "Quarterly snapshots miss daily drift", description: "Controls implemented in Q1 quietly degrade. By audit time, 30% of evidence is stale.", severity: "High" },
@@ -48,6 +50,7 @@ function Page() {
         ],
       }}
       how={{
+        title: "Inside the compliance engine",
         lead: "A four-stage compliance engine — questionnaire, evidence, scoring and remediation — running continuously.",
         pillars: [
           { h: "Questionnaire engine", p: "Adaptive control questions per framework, prefilled from your live infrastructure state." },
@@ -57,14 +60,14 @@ function Page() {
         ],
         canvas: <DpdpCanvas />,
       }}
-      faq={[
+      faq={{ title: "Deployment & integration details", items: [
         { q: "Which compliance frameworks are supported out of the box?", a: "DPDP 2023, GDPR, ISO 27001 (2022), SOC 2 (Type I & II), HIPAA, PCI-DSS, RBI cyber security framework and SEBI CSCRF. Custom frameworks can be modeled in YAML." },
         { q: "How is evidence collected without agents?", a: "Read-only cloud roles, IdP federation and Git/CI integrations. Evidence is hashed, signed and stored immutably so auditors can verify integrity." },
         { q: "Can the AI remediations be auto-applied?", a: "By default, no. Remediations are drafted as PRs or change requests and require human approval. Auto-apply is opt-in per environment." },
         { q: "How are findings prioritized?", a: "Each finding carries regulatory severity, control weight and blast radius. The score blends all three so engineering effort goes where it matters." },
         { q: "Does it generate auditor reports?", a: "Yes — ISO 27001 SoA, SOC 2 control matrices, DPDP DPIA reports and a board-level posture summary, all exportable to PDF or shared via signed link." },
         { q: "What about on-prem and hybrid environments?", a: "We support agentless collection over private connectivity (PrivateLink, Express Route, IPsec) plus a lightweight collector for fully air-gapped sites." },
-      ]}
+      ]}}
       next={{ to: "/solutions/infrastructure-visibility", title: "Infrastructure Visibility Canvas" }}
     />
   );

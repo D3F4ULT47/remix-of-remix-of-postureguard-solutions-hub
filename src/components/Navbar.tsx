@@ -53,23 +53,31 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-2.5">
-          <div className="grid h-9 w-9 place-items-center rounded-lg bg-gradient-to-br from-primary to-accent shadow-[0_0_20px_-4px_var(--primary)]">
-            <ShieldCheck className="h-5 w-5 text-primary-foreground" strokeWidth={2.5} />
-          </div>
-          <div className="leading-tight">
-            <div className="text-[15px] font-semibold tracking-tight text-foreground">PostureGuard</div>
-            <div className="text-[10px] font-medium tracking-[0.18em] text-primary">BETA</div>
-          </div>
-        </Link>
+    <>
+      <div className="absolute left-0 top-0 z-40 w-full">
+        <div className="mx-auto flex max-w-7xl items-center px-6 py-4">
+          {/* Logo - Remains static at the top */}
+          <Link to="/" className="flex items-center gap-2.5">
+            <div className="grid h-9 w-9 place-items-center rounded-lg bg-gradient-to-br from-primary to-accent shadow-[0_0_20px_-4px_var(--primary)]">
+              <ShieldCheck className="h-5 w-5 text-primary-foreground" strokeWidth={2.5} />
+            </div>
+            <div className="leading-tight">
+              <div className="text-[15px] font-semibold tracking-tight text-foreground">PostureGuard</div>
+              <div className="text-[10px] font-medium tracking-[0.18em] text-primary">BETA</div>
+            </div>
+          </Link>
+        </div>
+      </div>
+
+      <header className="sticky top-0 z-50 w-full pointer-events-none">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+          {/* Spacer to maintain layout balance where the logo was */}
+          <div className="w-[180px] hidden md:block" />
 
         {/* Pill nav */}
         <nav
           ref={wrapRef}
-          className="glass-panel relative hidden items-center gap-1 rounded-full px-2 py-1.5 md:flex"
+          className="glass-panel pointer-events-auto relative hidden items-center gap-1 rounded-full px-2 py-1.5 md:flex"
         >
           <NavItem to="/" exact onActivate={() => setOpen(false)}>Home</NavItem>
           <NavItem to="/compliance-score" onActivate={() => setOpen(false)}>Compliance Score</NavItem>
@@ -137,7 +145,7 @@ export function Navbar() {
           <NavItem to="/pricing">Pricing</NavItem>
         </nav>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="pointer-events-auto hidden items-center gap-3 md:flex">
           <button className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Login</button>
           <button className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-[0_0_24px_-6px_var(--primary)] transition-transform hover:scale-[1.02]">
             Try Free Scan
@@ -145,6 +153,7 @@ export function Navbar() {
         </div>
       </div>
     </header>
+    </>
   );
 }
 

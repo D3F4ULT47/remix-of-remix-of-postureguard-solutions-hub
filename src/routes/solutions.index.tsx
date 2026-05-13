@@ -31,19 +31,19 @@ function SolutionsIndex() {
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 font-mono text-[10.5px] uppercase tracking-[0.18em] text-primary">
               <span className="h-1.5 w-1.5 rounded-full bg-primary pulse-dot" /> Platform Capabilities
             </div>
-            <h1 className="mt-4 text-balance text-3xl font-semibold leading-tight tracking-tight text-foreground md:text-[40px]">
+            <h1 className="mt-4 text-balance text-2xl font-semibold leading-tight tracking-tight text-foreground md:text-[32px]">
               One cybersecurity platform. Four operational capabilities.
             </h1>
-            <p className="mt-3 max-w-2xl text-[14.5px] leading-relaxed text-muted-foreground">
+            <p className="mt-3 max-w-2xl text-[13px] leading-relaxed text-muted-foreground">
               PostureGuard unifies regulatory compliance, infrastructure visibility, threat intelligence and AI-assisted operations into a single, consistent product surface.
             </p>
           </div>
         </div>
       </section>
 
-      <section className="border-t border-border">
+      <section>
         <div className="mx-auto max-w-7xl px-6 py-14">
-          <SectionLabel index="01">Capabilities</SectionLabel>
+          <SectionLabel>Capabilities</SectionLabel>
           <div className="grid gap-3 md:grid-cols-2">
             {items.map(({ to, title, desc, Icon, tags }) => (
               <Link
@@ -57,8 +57,8 @@ function SolutionsIndex() {
                   </span>
                   <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
                 </div>
-                <h3 className="mt-5 text-lg font-semibold tracking-tight text-foreground">{title}</h3>
-                <p className="mt-2 text-[13.5px] leading-relaxed text-muted-foreground">{desc}</p>
+                <h3 className="mt-5 text-base font-semibold tracking-tight text-foreground">{title}</h3>
+                <p className="mt-2 text-[12px] leading-relaxed text-muted-foreground">{desc}</p>
                 <div className="mt-4 flex flex-wrap gap-1.5">
                   {tags.map((t) => (
                     <span key={t} className="rounded-md border border-border bg-background/40 px-2 py-0.5 font-mono text-[10.5px] text-muted-foreground">{t}</span>

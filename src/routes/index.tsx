@@ -19,10 +19,10 @@ function Index() {
         <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1.5 text-[12px] font-medium text-primary">
           <span className="h-1.5 w-1.5 rounded-full bg-primary pulse-dot" /> Now in Beta · Early Access Available
         </div>
-        <h1 className="mx-auto mt-6 max-w-3xl text-balance text-5xl font-semibold leading-[1.05] tracking-tight text-foreground md:text-6xl">
+        <h1 className="mx-auto mt-6 max-w-3xl text-balance text-4xl font-semibold leading-[1.08] tracking-tight text-foreground md:text-5xl">
           Real-Time Threat Detection & Compliance Automation
         </h1>
-        <p className="mx-auto mt-5 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
+        <p className="mx-auto mt-4 max-w-xl text-[13px] leading-relaxed text-muted-foreground md:text-[14px]">
           PostureGuard helps startups achieve enterprise-grade security with automated vulnerability scanning, real-time CVE alerts, and one-click compliance frameworks.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -40,7 +40,7 @@ function Index() {
         <div className="flex items-end justify-between">
           <div>
             <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary">Platform</div>
-            <h2 className="mt-2 text-balance text-3xl font-semibold tracking-tight text-foreground">Explore the Solutions ecosystem</h2>
+            <h2 className="mt-2 text-balance text-2xl font-semibold tracking-tight text-foreground md:text-[28px]">Explore the Solutions ecosystem</h2>
           </div>
           <Link to="/solutions" className="hidden items-center gap-1.5 text-sm font-medium text-primary md:inline-flex">
             All capabilities <ArrowRight className="h-4 w-4" />
@@ -54,7 +54,7 @@ function Index() {
             { to: "/solutions/ai-copilot", t: "AI Security Copilot" },
           ].map((s) => (
             <Link key={s.to} to={s.to} className="group rounded-xl border border-border bg-surface/50 p-5 hover:border-primary/40">
-              <div className="text-[13.5px] font-semibold text-foreground">{s.t}</div>
+              <div className="text-[12px] font-semibold text-foreground">{s.t}</div>
               <div className="mt-3 inline-flex items-center gap-1 text-[12px] text-muted-foreground group-hover:text-primary">
                 Open page <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
               </div>

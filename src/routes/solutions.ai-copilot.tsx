@@ -61,6 +61,7 @@ function Page() {
         { label: "Time Saved", value: "412h", delta: "vs manual SOC", intent: "muted" },
       ]}
       about={{
+        title: "AI-native security operations",
         lead: "Not a chatbot. A reasoning agent grounded in your actual platform.",
         points: [
           { h: "Conversational interface", p: "Ask about posture, threats, compliance gaps or financial impact in natural language and get cited answers." },
@@ -70,6 +71,7 @@ function Page() {
         ],
       }}
       why={{
+        title: "Why traditional SOC workflows fail",
         lead: "Security teams are stretched thin. The copilot acts as the SOC's force multiplier.",
         risks: [
           { title: "Tool sprawl drowns analysts", description: "Average enterprise SOC uses 45+ tools. Context-switching is the silent productivity killer.", severity: "High" },
@@ -79,6 +81,7 @@ function Page() {
         ],
       }}
       how={{
+        title: "How the copilot orchestrates security",
         lead: "AI-generated operational outputs and executive-level intelligence — on demand.",
         pillars: [
           { h: "AI orchestration", p: "A planner decomposes requests into platform tool calls — search, scan, query, generate — with bounded autonomy." },
@@ -89,14 +92,14 @@ function Page() {
         canvas: <CopilotCanvas />,
         pillarsSlot: <CopilotOutputCards />,
       }}
-      faq={[
+      faq={{ title: "Security & deployment details", items: [
         { q: "Which models power the copilot?", a: "A mix of frontier and self-hosted models depending on workload — reasoning runs on frontier models, retrieval and embeddings run in your tenant. No customer data trains shared models." },
         { q: "How is hallucination prevented?", a: "Every answer is grounded in tool calls against your live data. The copilot will refuse to answer rather than guess, and citations link back to the underlying assets and findings." },
         { q: "Can the copilot make changes to my infrastructure?", a: "Only via reviewed PRs or change requests by default. Auto-apply is opt-in per environment with explicit guardrails (blast radius, approver requirements, time windows)." },
         { q: "Is the conversation history auditable?", a: "Yes. Every prompt, tool call, intermediate reasoning step and final answer is recorded immutably and exportable for SOC 2 / ISO audits." },
         { q: "Does my data leave my tenant?", a: "Inference runs through a private gateway with no retention. Embeddings, evidence and conversations stay in your dedicated tenant storage." },
         { q: "Can I build custom playbooks?", a: "Yes — any conversation can be saved as a playbook that runs on a schedule or trigger, with versioning and approval workflows." },
-      ]}
+      ]}}
       next={{ to: "/solutions/dpdp-compliance", title: "DPDP Compliance Posture" }}
     />
   );

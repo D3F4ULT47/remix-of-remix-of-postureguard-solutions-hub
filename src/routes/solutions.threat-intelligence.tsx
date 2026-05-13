@@ -30,6 +30,7 @@ function Page() {
         { label: "False-Positive Rate", value: "2.1%", delta: "AI-scored", intent: "muted" },
       ]}
       about={{
+        title: "Threat intelligence in context",
         lead: "Most threat feeds drown teams in CVEs. We surface the handful that actually matter to you.",
         points: [
           { h: "Live ingestion", p: "NVD, MITRE, vendor advisories, exploit databases and dark-web chatter — normalized into one stream." },
@@ -39,6 +40,7 @@ function Page() {
         ],
       }}
       why={{
+        title: "The operational gap in threat response",
         lead: "The CVE backlog is impossible. The exploitable subset is small. We help you find it.",
         risks: [
           { title: "30,000+ CVEs published per year", description: "Less than 5% are ever exploited in the wild. Static severity ranking wastes engineering time on the other 95%.", severity: "High" },
@@ -48,6 +50,7 @@ function Page() {
         ],
       }}
       how={{
+        title: "The intelligence orchestration layer",
         lead: "A streaming pipeline that ingests, correlates, scores and routes — with explainable scoring at every step.",
         pillars: [
           { h: "Threat ingestion", p: "Streaming connectors to 12+ public and commercial feeds, deduplicated in real time." },
@@ -57,14 +60,14 @@ function Page() {
         ],
         canvas: <ThreatCanvas />,
       }}
-      faq={[
+      faq={{ title: "Threat feed & SOC integration", items: [
         { q: "Which threat feeds are included?", a: "NVD, MITRE CVE, vendor PSIRTs (Microsoft, Red Hat, Cisco, Oracle), CISA KEV, EPSS, exploit-DB, GitHub Security Advisories, plus optional commercial feeds (Recorded Future, Mandiant)." },
         { q: "How does AI scoring work and is it explainable?", a: "Every score exposes its components: EPSS percentile, CVSS vector, exposure path and business criticality. You can see exactly why a CVE was elevated or suppressed." },
         { q: "Can I bring my own threat intel?", a: "Yes — STIX/TAXII 2.1, MISP and custom JSON feeds are supported. Your private indicators stay in your tenant." },
         { q: "How are alerts delivered?", a: "Slack, Microsoft Teams, PagerDuty, Opsgenie, Jira, ServiceNow, plus generic webhooks and SIEM forwarding (Splunk, Sentinel, Chronicle, Elastic)." },
         { q: "What about zero-days?", a: "Zero-day intelligence and CISA KEV entries get fast-track routing with separate SLAs and direct-to-on-call paging." },
         { q: "Do you support MITRE ATT&CK mapping?", a: "Every active campaign and CVE is mapped to ATT&CK techniques, letting you see coverage gaps in your detections." },
-      ]}
+      ]}}
       next={{ to: "/solutions/ai-copilot", title: "AI Security Copilot" }}
     />
   );
