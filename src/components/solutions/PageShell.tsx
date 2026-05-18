@@ -6,7 +6,7 @@ export function PageShell({ children }: { children: ReactNode }) {
   return (
     <main className="relative min-h-screen">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[480px] bg-radial-primary" />
-      <div className="pointer-events-none absolute inset-0 bg-grid opacity-[0.35] [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_75%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-grid opacity-[0.35] mask-radial-top" />
       <div className="relative">{children}</div>
     </main>
   );
