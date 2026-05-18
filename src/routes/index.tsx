@@ -27,6 +27,7 @@ function Index() {
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <button className="rounded-full bg-emerald px-5 py-2.5 text-sm font-semibold text-emerald-foreground shadow-[0_0_28px_-6px_var(--emerald)]">Try Free Scan</button>
+          <Link to="/dashboard" className="rounded-full border border-primary bg-primary/10 px-5 py-2.5 text-sm font-semibold text-primary hover:bg-primary/20 shadow-[0_0_24px_-6px_var(--primary)] transition-all">Go to Dashboard</Link>
           <Link to="/compliance-score" className="rounded-full border border-border-strong bg-surface px-5 py-2.5 text-sm font-semibold text-foreground hover:border-primary/40">See Compliance Score</Link>
         </div>
         <div className="mt-8 flex flex-wrap justify-center gap-5 text-[12px] text-muted-foreground">

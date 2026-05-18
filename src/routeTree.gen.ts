@@ -10,17 +10,30 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ComplianceScoreRouteImport } from './routes/compliance-score'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SolutionsIndexRouteImport } from './routes/solutions.index'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as SolutionsThreatIntelligenceRouteImport } from './routes/solutions.threat-intelligence'
 import { Route as SolutionsInfrastructureVisibilityRouteImport } from './routes/solutions.infrastructure-visibility'
 import { Route as SolutionsDpdpComplianceRouteImport } from './routes/solutions.dpdp-compliance'
 import { Route as SolutionsAiCopilotRouteImport } from './routes/solutions.ai-copilot'
+import { Route as DashboardThreatsRouteImport } from './routes/dashboard/threats'
+import { Route as DashboardOverviewRouteImport } from './routes/dashboard/overview'
+import { Route as DashboardInfraScanRouteImport } from './routes/dashboard/infra-scan'
+import { Route as DashboardComplianceRouteImport } from './routes/dashboard/compliance'
+import { Route as DashboardAttackPatternsRouteImport } from './routes/dashboard/attack-patterns'
+import { Route as DashboardActionsRouteImport } from './routes/dashboard/actions'
 
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ComplianceScoreRoute = ComplianceScoreRouteImport.update({
@@ -37,6 +50,11 @@ const SolutionsIndexRoute = SolutionsIndexRouteImport.update({
   id: '/solutions/',
   path: '/solutions/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardRoute,
 } as any)
 const SolutionsThreatIntelligenceRoute =
   SolutionsThreatIntelligenceRouteImport.update({
@@ -60,36 +78,89 @@ const SolutionsAiCopilotRoute = SolutionsAiCopilotRouteImport.update({
   path: '/solutions/ai-copilot',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardThreatsRoute = DashboardThreatsRouteImport.update({
+  id: '/threats',
+  path: '/threats',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardOverviewRoute = DashboardOverviewRouteImport.update({
+  id: '/overview',
+  path: '/overview',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardInfraScanRoute = DashboardInfraScanRouteImport.update({
+  id: '/infra-scan',
+  path: '/infra-scan',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardComplianceRoute = DashboardComplianceRouteImport.update({
+  id: '/compliance',
+  path: '/compliance',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardAttackPatternsRoute = DashboardAttackPatternsRouteImport.update({
+  id: '/attack-patterns',
+  path: '/attack-patterns',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardActionsRoute = DashboardActionsRouteImport.update({
+  id: '/actions',
+  path: '/actions',
+  getParentRoute: () => DashboardRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/compliance-score': typeof ComplianceScoreRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/pricing': typeof PricingRoute
+  '/dashboard/actions': typeof DashboardActionsRoute
+  '/dashboard/attack-patterns': typeof DashboardAttackPatternsRoute
+  '/dashboard/compliance': typeof DashboardComplianceRoute
+  '/dashboard/infra-scan': typeof DashboardInfraScanRoute
+  '/dashboard/overview': typeof DashboardOverviewRoute
+  '/dashboard/threats': typeof DashboardThreatsRoute
   '/solutions/ai-copilot': typeof SolutionsAiCopilotRoute
   '/solutions/dpdp-compliance': typeof SolutionsDpdpComplianceRoute
   '/solutions/infrastructure-visibility': typeof SolutionsInfrastructureVisibilityRoute
   '/solutions/threat-intelligence': typeof SolutionsThreatIntelligenceRoute
+  '/dashboard/': typeof DashboardIndexRoute
   '/solutions/': typeof SolutionsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/compliance-score': typeof ComplianceScoreRoute
   '/pricing': typeof PricingRoute
+  '/dashboard/actions': typeof DashboardActionsRoute
+  '/dashboard/attack-patterns': typeof DashboardAttackPatternsRoute
+  '/dashboard/compliance': typeof DashboardComplianceRoute
+  '/dashboard/infra-scan': typeof DashboardInfraScanRoute
+  '/dashboard/overview': typeof DashboardOverviewRoute
+  '/dashboard/threats': typeof DashboardThreatsRoute
   '/solutions/ai-copilot': typeof SolutionsAiCopilotRoute
   '/solutions/dpdp-compliance': typeof SolutionsDpdpComplianceRoute
   '/solutions/infrastructure-visibility': typeof SolutionsInfrastructureVisibilityRoute
   '/solutions/threat-intelligence': typeof SolutionsThreatIntelligenceRoute
+  '/dashboard': typeof DashboardIndexRoute
   '/solutions': typeof SolutionsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/compliance-score': typeof ComplianceScoreRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/pricing': typeof PricingRoute
+  '/dashboard/actions': typeof DashboardActionsRoute
+  '/dashboard/attack-patterns': typeof DashboardAttackPatternsRoute
+  '/dashboard/compliance': typeof DashboardComplianceRoute
+  '/dashboard/infra-scan': typeof DashboardInfraScanRoute
+  '/dashboard/overview': typeof DashboardOverviewRoute
+  '/dashboard/threats': typeof DashboardThreatsRoute
   '/solutions/ai-copilot': typeof SolutionsAiCopilotRoute
   '/solutions/dpdp-compliance': typeof SolutionsDpdpComplianceRoute
   '/solutions/infrastructure-visibility': typeof SolutionsInfrastructureVisibilityRoute
   '/solutions/threat-intelligence': typeof SolutionsThreatIntelligenceRoute
+  '/dashboard/': typeof DashboardIndexRoute
   '/solutions/': typeof SolutionsIndexRoute
 }
 export interface FileRouteTypes {
@@ -97,37 +168,61 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/compliance-score'
+    | '/dashboard'
     | '/pricing'
+    | '/dashboard/actions'
+    | '/dashboard/attack-patterns'
+    | '/dashboard/compliance'
+    | '/dashboard/infra-scan'
+    | '/dashboard/overview'
+    | '/dashboard/threats'
     | '/solutions/ai-copilot'
     | '/solutions/dpdp-compliance'
     | '/solutions/infrastructure-visibility'
     | '/solutions/threat-intelligence'
+    | '/dashboard/'
     | '/solutions/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/compliance-score'
     | '/pricing'
+    | '/dashboard/actions'
+    | '/dashboard/attack-patterns'
+    | '/dashboard/compliance'
+    | '/dashboard/infra-scan'
+    | '/dashboard/overview'
+    | '/dashboard/threats'
     | '/solutions/ai-copilot'
     | '/solutions/dpdp-compliance'
     | '/solutions/infrastructure-visibility'
     | '/solutions/threat-intelligence'
+    | '/dashboard'
     | '/solutions'
   id:
     | '__root__'
     | '/'
     | '/compliance-score'
+    | '/dashboard'
     | '/pricing'
+    | '/dashboard/actions'
+    | '/dashboard/attack-patterns'
+    | '/dashboard/compliance'
+    | '/dashboard/infra-scan'
+    | '/dashboard/overview'
+    | '/dashboard/threats'
     | '/solutions/ai-copilot'
     | '/solutions/dpdp-compliance'
     | '/solutions/infrastructure-visibility'
     | '/solutions/threat-intelligence'
+    | '/dashboard/'
     | '/solutions/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ComplianceScoreRoute: typeof ComplianceScoreRoute
+  DashboardRoute: typeof DashboardRouteWithChildren
   PricingRoute: typeof PricingRoute
   SolutionsAiCopilotRoute: typeof SolutionsAiCopilotRoute
   SolutionsDpdpComplianceRoute: typeof SolutionsDpdpComplianceRoute
@@ -143,6 +238,13 @@ declare module '@tanstack/react-router' {
       path: '/pricing'
       fullPath: '/pricing'
       preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/compliance-score': {
@@ -165,6 +267,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/solutions/'
       preLoaderRoute: typeof SolutionsIndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRoute
     }
     '/solutions/threat-intelligence': {
       id: '/solutions/threat-intelligence'
@@ -194,12 +303,79 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SolutionsAiCopilotRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/threats': {
+      id: '/dashboard/threats'
+      path: '/threats'
+      fullPath: '/dashboard/threats'
+      preLoaderRoute: typeof DashboardThreatsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/overview': {
+      id: '/dashboard/overview'
+      path: '/overview'
+      fullPath: '/dashboard/overview'
+      preLoaderRoute: typeof DashboardOverviewRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/infra-scan': {
+      id: '/dashboard/infra-scan'
+      path: '/infra-scan'
+      fullPath: '/dashboard/infra-scan'
+      preLoaderRoute: typeof DashboardInfraScanRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/compliance': {
+      id: '/dashboard/compliance'
+      path: '/compliance'
+      fullPath: '/dashboard/compliance'
+      preLoaderRoute: typeof DashboardComplianceRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/attack-patterns': {
+      id: '/dashboard/attack-patterns'
+      path: '/attack-patterns'
+      fullPath: '/dashboard/attack-patterns'
+      preLoaderRoute: typeof DashboardAttackPatternsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/actions': {
+      id: '/dashboard/actions'
+      path: '/actions'
+      fullPath: '/dashboard/actions'
+      preLoaderRoute: typeof DashboardActionsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
   }
 }
+
+interface DashboardRouteChildren {
+  DashboardActionsRoute: typeof DashboardActionsRoute
+  DashboardAttackPatternsRoute: typeof DashboardAttackPatternsRoute
+  DashboardComplianceRoute: typeof DashboardComplianceRoute
+  DashboardInfraScanRoute: typeof DashboardInfraScanRoute
+  DashboardOverviewRoute: typeof DashboardOverviewRoute
+  DashboardThreatsRoute: typeof DashboardThreatsRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardActionsRoute: DashboardActionsRoute,
+  DashboardAttackPatternsRoute: DashboardAttackPatternsRoute,
+  DashboardComplianceRoute: DashboardComplianceRoute,
+  DashboardInfraScanRoute: DashboardInfraScanRoute,
+  DashboardOverviewRoute: DashboardOverviewRoute,
+  DashboardThreatsRoute: DashboardThreatsRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ComplianceScoreRoute: ComplianceScoreRoute,
+  DashboardRoute: DashboardRouteWithChildren,
   PricingRoute: PricingRoute,
   SolutionsAiCopilotRoute: SolutionsAiCopilotRoute,
   SolutionsDpdpComplianceRoute: SolutionsDpdpComplianceRoute,

@@ -12,7 +12,7 @@ export function PageShell({ children }: { children: ReactNode }) {
   );
 }
 
-export function Breadcrumbs({ category, page }: { category: string; page: string }) {
+export function Breadcrumbs({ category, page }:{ category: string; page: string}){
   return (
     <div className="flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
       <Link to="/" className="hover:text-foreground">PostureGuard</Link>

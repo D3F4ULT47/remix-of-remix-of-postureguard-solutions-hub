@@ -111,11 +111,13 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const location = useRouter().state.location;
+  const isDashboard = location.pathname.startsWith("/dashboard");
 
   return (
     <QueryClientProvider client={queryClient}>
       <div className="dark min-h-screen bg-background text-foreground">
-        <Navbar />
+        {!isDashboard && <Navbar />}
         <Outlet />
       </div>
     </QueryClientProvider>
