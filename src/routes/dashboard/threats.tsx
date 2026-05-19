@@ -28,7 +28,8 @@ function ThreatsPage() {
   const { cveId, view } = Route.useSearch();
   const navigate = useNavigate();
 
-  // Search bar state — auto-populated from URL, persists after modal close
+  // ─── FLOW A: External investigation state (URL-driven) ───
+  // Search bar state — auto-populated ONLY from external URL params
   const [searchValue, setSearchValue] = useState(cveId || "");
 
   // Sync search bar when cveId changes from external navigation
@@ -38,21 +39,34 @@ function ThreatsPage() {
     }
   }, [cveId]);
 
-  // Filter logic: use searchValue (local state) to filter, NOT just URL param
+  // ─── FLOW B: Internal table browse state (local-only) ───
+  // This is used when clicking "View" inside the Threat Intelligence table.
+  // It ONLY opens the modal — no filtering, no search, no URL mutation.
+  const [localViewCveId, setLocalViewCveId] = useState<string | null>(null);
+
+  // Filter logic: use searchValue (local state) to filter
   const displayCves = searchValue
     ? MOCK_CVES.filter(c => c.id.toLowerCase().includes(searchValue.toLowerCase()) || c.asset.toLowerCase().includes(searchValue.toLowerCase()))
     : MOCK_CVES;
 
-  const selectedCve = cveId ? MOCK_CVES.find(c => c.id === cveId) : null;
+  // Resolve which CVE is being viewed — local click takes priority
+  const activeCveId = localViewCveId || (view ? cveId : null);
+  const selectedCve = activeCveId ? MOCK_CVES.find(c => c.id === activeCveId) : null;
 
-  const openView = (id: string) => {
-    setSearchValue(id);
-    navigate({ search: { cveId: id, view: true } });
+  // INTERNAL: View button inside the table — modal only, zero side effects
+  const openLocalView = (id: string) => {
+    setLocalViewCveId(id);
   };
 
-  // CRITICAL: closeView keeps the filter, only closes the modal
+  // Close handler — behaves differently based on which flow opened the modal
   const closeView = () => {
-    navigate({ search: { cveId: searchValue || undefined } });
+    if (localViewCveId) {
+      // FLOW B: internal click — just close the modal, nothing else changes
+      setLocalViewCveId(null);
+    } else {
+      // FLOW A: external navigation — keep filter, close modal
+      navigate({ search: { cveId: searchValue || undefined } });
+    }
   };
 
   const clearFilter = () => {
@@ -78,9 +92,9 @@ function ThreatsPage() {
           <div className="flex items-center gap-3">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <input 
-                type="text" 
-                placeholder="Search CVE, vector, or asset..." 
+              <input
+                type="text"
+                placeholder="Search CVE, vector, or asset..."
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
                 className="h-10 w-[320px] rounded-xl border border-border/60 bg-surface/50 pl-10 pr-4 text-[13px] text-foreground outline-none transition-colors focus:border-primary/50 focus:bg-surface-elevated shadow-sm"
@@ -104,17 +118,17 @@ function ThreatsPage() {
                 <th className="whitespace-nowrap px-6 py-4 font-bold">CVSS v3</th>
                 <th className="whitespace-nowrap px-6 py-4 font-bold">EPSS</th>
                 <th className="whitespace-nowrap px-6 py-4 font-bold">Asset</th>
-                <th className="whitespace-nowrap px-6 py-4 text-right font-bold">View</th>
+                <th className="whitespace-nowrap px-10 py-4 text-right font-bold">View</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border/20">
               {displayCves.map((cve, idx) => (
-                <tr 
-                  key={cve.id} 
+                <tr
+                  key={cve.id}
                   className={`group transition-colors 
                     ${idx % 2 === 0 ? "bg-transparent" : "bg-surface-elevated/20"} 
                     hover:bg-surface-elevated/60 
-                    ${cveId === cve.id ? "bg-primary/5 border-l-2 border-l-primary" : "border-l-2 border-l-transparent"}`
+                    ${activeCveId === cve.id ? "bg-primary/5 border-l-2 border-l-primary" : "border-l-2 border-l-transparent"}`
                   }
                 >
                   <td className="whitespace-nowrap px-6 py-4">
@@ -124,9 +138,9 @@ function ThreatsPage() {
                     </div>
                   </td>
                   <td className="whitespace-nowrap px-6 py-4">
-                    <StatusBadge 
-                      status={cve.sev} 
-                      type={cve.sev === "CRITICAL" ? "error" : cve.sev === "HIGH" ? "warning" : "success"} 
+                    <StatusBadge
+                      status={cve.sev}
+                      type={cve.sev === "CRITICAL" ? "error" : cve.sev === "HIGH" ? "warning" : "success"}
                     />
                   </td>
                   <td className="whitespace-nowrap px-6 py-4 font-semibold text-foreground">{cve.cvss}</td>
@@ -135,8 +149,8 @@ function ThreatsPage() {
                     <span className="font-mono text-foreground">{cve.asset}</span>
                   </td>
                   <td className="whitespace-nowrap px-6 py-4 text-right">
-                    <button 
-                      onClick={() => openView(cve.id)}
+                    <button
+                      onClick={() => openLocalView(cve.id)}
                       className="rounded-md border border-border/60 bg-surface px-3 py-1.5 text-[12px] font-semibold text-foreground transition-colors hover:bg-surface-elevated hover:border-primary/50 hover:text-primary"
                     >
                       View
@@ -151,7 +165,7 @@ function ThreatsPage() {
 
       {/* Centered CVE Investigation Modal */}
       <InvestigationModal
-        isOpen={view && !!selectedCve}
+        isOpen={!!selectedCve}
         onClose={closeView}
         title={<span className="font-mono text-destructive">{selectedCve?.id}</span>}
         subtitle={
